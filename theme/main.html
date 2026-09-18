@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | e }} · {{ config.site_name | e }}</title>
+  <meta name="description" content="{{ (page.meta.summary or config.site_description) | e }}">
+  <link rel="stylesheet" href="{{ 'style.css' | url }}">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="shell">
+  <header>
+    <a class="name" href="{{ nav.homepage.url | url }}">Donovan’s<br><em>fieldnotes.</em></a>
+    <p class="small">An open notebook<br>by Donovan Martinez</p>
+    <nav aria-label="Main navigation">
+      {% for item in nav %}<a href="{{ item.url | url }}" {% if item.active %}aria-current="page"{% endif %}>{{ item.title | e }}</a>{% endfor %}
+    </nav>
+    <p class="margin-note">Games, Linux, music,<br>and things in progress.</p>
+  </header>
+  <main id="content">
+    <div class="running-head"><span>FIELDNOTES / {{ page.meta.section | default('NOTEBOOK') | upper | e }}</span><span>DM</span></div>
+    {% if page.meta.date %}<p class="date">{{ page.meta.date | e }}{% if page.meta.topic %} &nbsp; / &nbsp; {{ page.meta.topic | e }}{% endif %}</p>{% endif %}
+    <article>{{ page.content }}</article>
+    {% if page.meta.kind in ['home', 'journal'] %}
+    <section class="journal" aria-label="Journal entries">
+      <h2>{{ 'Recent entries' if page.meta.kind == 'home' else 'Entries' }}</h2>
+      {% for post in config.extra.journal[:5] if page.meta.kind == 'home' %}
+      <div class="entry"><time datetime="{{ post.date }}">{{ post.date }}</time><div><a href="{{ post.url | url }}">{{ post.title | e }}</a><p>{{ post.summary | e }}</p><span class="topic">{{ post.topic | e }}</span></div></div>
+      {% endfor %}
+      {% if page.meta.kind == 'journal' %}{% for post in config.extra.journal %}
+      <div class="entry"><time datetime="{{ post.date }}">{{ post.date }}</time><div><a href="{{ post.url | url }}">{{ post.title | e }}</a><p>{{ post.summary | e }}</p><span class="topic">{{ post.topic | e }}</span></div></div>
+      {% endfor %}{% endif %}
+      {% if not config.extra.journal %}<p>No entries yet.</p>{% endif %}
+    </section>
+    {% endif %}
+    <footer><span>Donovan Martinez</span><span>A notebook, always in progress.</span></footer>
+  </main>
+</div>
+</body>
+</html>

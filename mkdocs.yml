@@ -1,0 +1,26 @@
+site_name: Donovan’s fieldnotes
+site_description: Games, Linux, music, and things in progress.
+site_author: Donovan Martinez
+docs_dir: !ENV [VAULT_PUBLIC, example-vault/Public]
+site_dir: dist
+theme:
+  name: null
+  custom_dir: theme
+plugins: []
+hooks:
+  - publish.py
+nav:
+  - Home: index.md
+  - Journal: journal/index.md
+  - Projects: projects/index.md
+  - Agada: projects/agada.md
+markdown_extensions:
+  - tables
+  - fenced_code
+  - toc
+validation:
+  links:
+    not_found: warn
+    anchors: warn
+extra:
+  author: Donovan Martinez

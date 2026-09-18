@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agada · Playground</title>
+<style>body{max-width:680px;margin:10vh auto;padding:24px;background:#17191c;color:#eee;font:19px/1.7 Georgia,serif}a{color:#9bbaff}h1{font-size:48px;font-weight:normal}code{font-size:16px}button{padding:10px 16px;font:inherit;border:1px solid #999;background:transparent;color:inherit;cursor:pointer}button:focus-visible{outline:3px solid #9bbaff}</style>
+<a href="../../projects/agada/">Back to Agada</a><h1>A space to experiment.</h1>
+<p>This small page is independent of the notebook theme. Replace it with a browser experiment, or edit its HTML, CSS, and JavaScript as a first exercise.</p>
+<button type="button" id="color">Change the background</button><p id="count" aria-live="polite">No changes yet.</p>
+<script>const colors=['#172c35','#28213d','#17332e','#17191c'];let n=0;document.getElementById('color').addEventListener('click',()=>{document.body.style.background=colors[n%colors.length];n++;document.getElementById('count').textContent=`Background changed ${n} ${n===1?'time':'times'}.`;});</script></html>
